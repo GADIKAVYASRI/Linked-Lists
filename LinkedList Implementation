@@ -1,0 +1,100 @@
+class LL{
+    Node head;
+    private int size;
+    LL(){
+        this.size=0;
+    }
+    class Node{
+        String data;
+        Node next;
+        Node(String data){
+            this.data = data;
+            this.next = null;
+            size++;
+        }
+    }
+    //add operation
+    //insert at first
+    public void insertFirst(String data){
+        Node new_node=new Node(data);
+        if(head == null){
+            head = new_node;
+            return;
+        }
+        new_node.next=head;
+        head=new_node;
+    }
+    //insert at last
+    public void insertLast(String data){
+        Node new_node=new Node(data);
+        if(head == null){
+            head = new_node;
+            return;
+        }
+        Node last=head;
+        while(last.next != null){
+            last=last.next;
+        }
+        last.next=new_node;
+    }
+    //print
+    public void printll(){
+        if(head == null){
+            System.out.print("List is empty");
+            return;
+        }
+        Node last=head;
+        while(last != null){
+            System.out.print(last.data+"->");
+            last=last.next;
+        }
+        System.out.println("NULL");
+    }
+    //delete
+    //delete at beg
+    public void delatBeg(){
+        if(head==null){
+           System.out.print("List is empty");
+            return; 
+        }
+        head=head.next;
+        size--;
+    }
+    public void delatend(){
+        if(head==null){
+           System.out.print("List is empty");
+            return; 
+        }
+        size--;
+        if(head.next==null){
+            head=null;
+            return;
+        }
+        Node secondlast=head;
+        Node last=head.next;
+        while(last.next!=null){
+            secondlast=secondlast.next;
+            last=last.next;
+        }
+        secondlast.next=null;
+    }
+    public int getsize(){
+        return size;
+    }
+    public static void main(String[] args){
+        LL li=new LL();
+        li.insertFirst("a");
+        li.insertFirst("is");
+        li.printll();
+        li.insertLast("LList");
+        li.insertFirst("This");
+        li.printll();
+        System.out.println(li.getsize());
+        li.delatBeg();
+        li.printll();
+        li.delatend();
+        li.printll();
+        System.out.println(li.getsize());
+        
+    }
+}
